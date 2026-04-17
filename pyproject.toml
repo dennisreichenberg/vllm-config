@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vllm-config"
+version = "0.1.0"
+description = "Analyze your hardware and generate optimal vLLM startup parameters"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Dennis Reichenberg" }]
+keywords = ["vllm", "llm", "gpu", "configuration", "cli", "ai", "optimization"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "httpx>=0.27",
+    "rich>=13.0",
+    "typer>=0.12",
+    "psutil>=5.9",
+    "pynvml>=11.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff", "mypy"]
+
+[project.scripts]
+vllm-config = "vllm_config.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/dennisreichenberg/vllm-config"
+Repository = "https://github.com/dennisreichenberg/vllm-config"
+Issues = "https://github.com/dennisreichenberg/vllm-config/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
